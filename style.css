@@ -7,65 +7,80 @@
 }
 
 :root {
-  --text: #1e293b;
+  --text: #0f172a;
   --text-secondary: #64748b;
-  --bg: #ffffff;
+  --bg: #fafafa;
+  --surface: #ffffff;
   --border: #e2e8f0;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-light: #eff6ff;
-  --link: #2563eb;
-  --link-hover: #1d4ed8;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-light: #eef2ff;
+  --accent-glow: rgba(99, 102, 241, 0.08);
+  --link: #6366f1;
+  --link-hover: #4f46e5;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
-  line-height: 1.6;
-  max-width: 600px;
+  line-height: 1.7;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 4rem 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Profile photo */
 .photo {
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 3px solid var(--surface);
 }
 
 /* Typography */
 h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 800;
   margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
   margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 
 p {
   color: var(--text-secondary);
   margin-bottom: 1rem;
+  font-size: 0.95rem;
 }
 
 /* Links */
 a {
   color: var(--link);
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 a:hover {
   color: var(--link-hover);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Navigation */
@@ -83,31 +98,34 @@ nav a {
 /* Navigation teasers */
 .nav-teasers {
   margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
 }
 
 .nav-card {
   display: block;
-  padding: 1rem 1.25rem;
+  padding: 1.125rem 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  transition: border-color 0.2s, background 0.2s;
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: var(--shadow-sm);
 }
 
 .nav-card:hover {
   border-color: var(--accent);
-  background: var(--accent-light);
+  box-shadow: var(--shadow-md), 0 0 0 3px var(--accent-glow);
   text-decoration: none;
+  transform: translateY(-2px);
 }
 
 .nav-card .nav-title {
   display: block;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text);
+  transition: color 0.2s;
 }
 
 .nav-card:hover .nav-title {
@@ -116,28 +134,47 @@ nav a {
 
 .nav-card .nav-desc {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
   font-weight: 400;
+  line-height: 1.5;
 }
 
 /* Social / contact links */
 .links {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   display: flex;
-  gap: 1.25rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .links a {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  transition: border-color 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 /* Divider */
 hr {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 2rem 0;
+  margin: 2.5rem 0;
 }
 
 /* Section pages */
@@ -173,6 +210,11 @@ li strong {
 /* Entry blocks */
 .entry {
   margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .entry h3 {
@@ -183,9 +225,109 @@ li strong {
 
 .entry p {
   font-size: 0.95rem;
+  margin-bottom: 0.25rem;
 }
 
 .entry .meta {
   font-size: 0.8rem;
   color: var(--text-secondary);
+}
+
+/* Section title with accent bar */
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* LinkedIn posts section */
+.linkedin-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.linkedin-card {
+  display: block;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+
+.linkedin-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #0a66c2;
+  text-decoration: none;
+}
+
+.linkedin-card .post-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.linkedin-card .post-source {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #0a66c2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: #e8f3ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.linkedin-card .post-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.linkedin-card .post-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.linkedin-card .post-read-more {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0a66c2;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  body {
+    padding: 2.5rem 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .nav-teasers {
+    grid-template-columns: 1fr;
+  }
 }
