@@ -7,12 +7,15 @@
 }
 
 :root {
-  --text: #111;
-  --text-secondary: #555;
-  --bg: #fff;
-  --border: #e0e0e0;
-  --link: #111;
-  --link-hover: #444;
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --bg: #ffffff;
+  --border: #e2e8f0;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-light: #eff6ff;
+  --link: #2563eb;
+  --link-hover: #1d4ed8;
 }
 
 body {
@@ -77,6 +80,48 @@ nav a {
   font-size: 0.95rem;
 }
 
+/* Navigation teasers */
+.nav-teasers {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.nav-card {
+  display: block;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  text-decoration: none;
+}
+
+.nav-card .nav-title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.nav-card:hover .nav-title {
+  color: var(--accent);
+}
+
+.nav-card .nav-desc {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
 /* Social / contact links */
 .links {
   margin-top: 1rem;
@@ -102,12 +147,12 @@ hr {
 
 .section-header a {
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: var(--accent);
   font-weight: 600;
 }
 
 .section-header a:hover {
-  color: var(--text);
+  color: var(--accent-hover);
 }
 
 /* List styles for section content */
