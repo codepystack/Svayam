@@ -15,7 +15,7 @@
   --accent: #6366f1;
   --accent-hover: #4f46e5;
   --accent-light: #eef2ff;
-  --accent-glow: rgba(99, 102, 241, 0.08);
+  --accent-glow: rgba(99, 102, 241, 0.12);
   --link: #6366f1;
   --link-hover: #4f46e5;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -23,13 +23,21 @@
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
   --radius: 12px;
   --radius-sm: 8px;
+  --gradient-hero: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --gradient-bg: linear-gradient(160deg, #f5f3ff 0%, #fafafa 45%, #f0fdf4 100%);
+  --gradient-accent: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(168, 85, 247, 0.06) 100%);
+}
+
+html {
+  background: var(--gradient-bg);
+  min-height: 100%;
 }
 
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background: transparent;
   line-height: 1.7;
   max-width: 640px;
   margin: 0 auto;
@@ -45,8 +53,10 @@ body {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;
-  box-shadow: var(--shadow-md);
-  border: 3px solid var(--surface);
+  box-shadow: var(--shadow-md), 0 0 0 3px var(--accent-glow);
+  border: 3px solid transparent;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--gradient-hero) border-box;
 }
 
 /* Typography */
@@ -55,6 +65,10 @@ h1 {
   font-weight: 800;
   margin-bottom: 0.25rem;
   letter-spacing: -0.02em;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h2 {
@@ -109,7 +123,7 @@ nav a {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
   box-shadow: var(--shadow-sm);
 }
 
@@ -118,6 +132,7 @@ nav a {
   box-shadow: var(--shadow-md), 0 0 0 3px var(--accent-glow);
   text-decoration: none;
   transform: translateY(-2px);
+  background: var(--gradient-accent);
 }
 
 .nav-card .nav-title {
@@ -166,7 +181,7 @@ nav a {
 .links a:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background: var(--accent-light);
+  background: linear-gradient(135deg, var(--accent-light) 0%, #f5f3ff 100%);
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
@@ -214,6 +229,7 @@ li strong {
   border-radius: var(--radius);
   background: var(--surface);
   border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
   box-shadow: var(--shadow-sm);
 }
 
@@ -239,7 +255,7 @@ li strong {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--text-secondary);
+  color: var(--accent);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -250,7 +266,8 @@ li strong {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--border);
+  background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+  opacity: 0.3;
 }
 
 /* LinkedIn posts section */
@@ -264,6 +281,7 @@ li strong {
   display: block;
   padding: 1.25rem;
   border: 1px solid var(--border);
+  border-left: 3px solid #0a66c2;
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
@@ -275,6 +293,7 @@ li strong {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: #0a66c2;
+  background: linear-gradient(135deg, #f0f7ff 0%, var(--surface) 100%);
   text-decoration: none;
 }
 
